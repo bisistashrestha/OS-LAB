@@ -3,23 +3,16 @@
 
 int main() {
     int arr[] = {5, 2, 8, 1, 3};
-    int n = 5, i;
-    int f = arr[0], s = arr[0], found = 0;
-    for (i = 1; i < n; i++)
-        if (arr[i] > f)
-            f = arr[i];
-    for (i = 0; i < n; i++) {
-        if (arr[i] != f) {
-            s = arr[i];
-            found = 1;
-            break;
+    int n = 5;
+    int largest=-9999, s_largest=-9999;
+    for (int i=0;i<n;i++) {
+        if (arr[i]>largest) {
+            s_largest=largest;
+            largest=arr[i];
+        } else if (arr[i]<largest && arr[i]>s_largest) {
+            s_largest=arr[i];
         }
     }
-    if (!found)
-        return 0;
-    for (i = 0; i < n; i++)
-        if (arr[i] > s && arr[i] != f)
-            s = arr[i];
-    printf("Second largest: %d\n", s);
+    printf("Second largest: %d\n", s_largest);
     return 0;
 }
