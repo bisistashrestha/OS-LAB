@@ -7,16 +7,14 @@ struct schedule {
     int ct;
     int tat;
     int wt;
-    int rt;   // Response Time
+    int rt;
 };
 
 int main() {
     int n;
     printf("Enter number of processes: ");
     scanf("%d",&n);
-
-    struct schedule processes[n];  // dynamic array
-
+    struct schedule processes[n];
     for(int i=0;i<n;i++) {
         printf("Process %d: \n",(i+1));
         printf("Enter PID: ");
@@ -27,7 +25,6 @@ int main() {
         scanf("%d",&processes[i].bt);
     }
 
-    // Sort by Arrival Time
     for(int i=0;i<n-1;i++){
         for(int j=i+1;j<n;j++){
             if(processes[i].at > processes[j].at){
@@ -42,14 +39,12 @@ int main() {
     for(int i=0;i<n;i++){
         if(time < processes[i].at)
             time = processes[i].at;
-
-        int start_time = time;  // when process actually starts
+        int start_time = time; 
         time = time + processes[i].bt;
-
         processes[i].ct = time;
         processes[i].tat = processes[i].ct - processes[i].at;
         processes[i].wt = processes[i].tat - processes[i].bt;
-        processes[i].rt = start_time - processes[i].at;  // Response Time
+        processes[i].rt = start_time - processes[i].at;
     }
 
     printf("\nPID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
